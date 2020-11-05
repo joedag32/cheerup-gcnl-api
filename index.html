@@ -14,7 +14,7 @@
       I think the story of today is going to be a very positive story for the vice president but also one where folks are going to need to stay patient and stay calm,” said Dillon. "The counting is happening, it's going to take time. We need to allow it to get done and done well, and we are very confident whatever happens with the counting and the timing we will come out ahead. We are absolutely confident that Joe Biden will be the next president of the United States.
     </textarea>
     <button type="button" id="analyzeButton">Analyze Text!</button>
-    <h2>Returned Object</h2>
+    <h2>Returned Key Phrases</h2>
     <div id="returnedObject"></div>
     <script>
       /* declare some variables */
@@ -25,7 +25,7 @@
       const objectOutput = document.getElementById("returnedObject");
       const testValue = input.value;
       /* set value of input field as the body to be sent via the POST request */
-      let postData = {
+      const postData = {
         documents: [
           {
             language: "en",
@@ -38,15 +38,7 @@
       /* update value of input to pass */
       input.addEventListener("input", updateValue);
       function updateValue(e) {
-        postData = {
-          documents: [
-          {
-            language: "en",
-            id: "1",
-            text: e.target.value
-          }
-          ]          
-        };
+        postData.documents[0].text = e.target.value;
       }
 
       analyzeButton.addEventListener("click", analyzeText);
