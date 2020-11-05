@@ -9,39 +9,47 @@
   <body>
     <h1>Azure Text Analytics REST API</h1>
     <label for="testValue">Test Value:</label>
-    <input type="text" id="testValue" name="testValue" value="Thundercats" />
+    <textarea id="testValue" name="testValue" rows="4" cols="50">
+      At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies. 
+    </textarea>
     <button type="button" id="analyzeButton">Analyze Text!</button>
     <h2>Returned Object</h2>
     <div id="returnedObject"></div>
     <script>
       /* declare some variables */
-      const functionURL = "https://eastus.api.cognitive.microsoft.com/text/analytics/v3.0/keyPhrases";
+      const functionURL =
+        "https://eastus.api.cognitive.microsoft.com/text/analytics/v3.0/keyPhrases";
       const input = document.getElementById("testValue");
       const analyzeButton = document.getElementById("analyzeButton");
       const objectOutput = document.getElementById("returnedObject");
       const testValue = input.value;
       /* set value of input field as the body to be sent via the POST request */
       const postData = {
-        name: testValue
+        documents: [
+          {
+            language: "en",
+            id: "1",
+            text: testValue
+          }
+        ]
       };
 
       /* update value of input to pass */
       input.addEventListener("input", updateValue);
       function updateValue(e) {
         postData.name = e.target.value;
-        console.log(postData);
       }
 
       analyzeButton.addEventListener("click", analyzeText);
       /* call Azure Function via HTTP POST and return a very simple object  */
       function analyzeText(e) {
+        console.log(postData);
         fetch(functionURL, {
           method: "POST",
           headers: {
-            "Ocp-Apim-Subscription-Key":
-              "sVTGssIWRl2aHbyFWRXIapWMK4DHOIsIiWRZK5W1ky5F/jaFDz7Jtg==",
+            "Ocp-Apim-Subscription-Key": "659f9c405d9f4c4ca9671ea7eec23117",
             "Content-Type": "application/json",
-            "Accept": "application/json"
+            Accept: "application/json"
           },
           body: JSON.stringify(postData)
         })
