@@ -10,7 +10,8 @@
     <h1>Azure Text Analytics REST API</h1>
     <label for="testValue">Test Value:</label>
     <textarea id="testValue" name="testValue" rows="4" cols="50">
-      At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies. 
+      Biden campaign manager Jen O’Malley Dillon is urging patience as the results continue to filter in, saying that while the story is going to be "very positive" for Biden, the counting is still happening and it’s going to take time. 
+      I think the story of today is going to be a very positive story for the vice president but also one where folks are going to need to stay patient and stay calm,” said Dillon. "The counting is happening, it's going to take time. We need to allow it to get done and done well, and we are very confident whatever happens with the counting and the timing we will come out ahead. We are absolutely confident that Joe Biden will be the next president of the United States.
     </textarea>
     <button type="button" id="analyzeButton">Analyze Text!</button>
     <h2>Returned Object</h2>
@@ -24,7 +25,7 @@
       const objectOutput = document.getElementById("returnedObject");
       const testValue = input.value;
       /* set value of input field as the body to be sent via the POST request */
-      const postData = {
+      let postData = {
         documents: [
           {
             language: "en",
@@ -37,7 +38,15 @@
       /* update value of input to pass */
       input.addEventListener("input", updateValue);
       function updateValue(e) {
-        postData.name = e.target.value;
+        postData = {
+          documents: [
+          {
+            language: "en",
+            id: "1",
+            text: e.target.value
+          }
+          ]          
+        };
       }
 
       analyzeButton.addEventListener("click", analyzeText);
@@ -56,7 +65,7 @@
           .then(res => res.json())
           .then(data => {
             console.log(data);
-            objectOutput.innerHTML = data.key;
+            objectOutput.innerHTML = data.documents[0].keyPhrases;
           })
           .catch(error => {
             console.error(error);
