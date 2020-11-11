@@ -1,6 +1,7 @@
 /* declare some variables */
 const functionURL =
   "https://eastus.api.cognitive.microsoft.com/text/analytics/v3.0/keyPhrases";
+const keyPhrases = [];
 const input = document.getElementById("testValue");
 const analyzeButton = document.getElementById("analyzeButton");
 const objectOutput = document.getElementById("returnedObject");
@@ -37,10 +38,15 @@ function analyzeText(e) {
   })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
-      objectOutput.innerHTML = data.documents[0].keyPhrases;
+      evaluateKeyPhrases(data);
     })
     .catch(error => {
       console.error(error);
     });
+}
+
+// evaluate the returend Key Phrases
+function evaluateKeyPhrases(data) {
+  
+  objectOutput.innerHTML = data.documents[0].keyPhrases;
 }
