@@ -49,6 +49,7 @@ function analyzeText(e) {
 // evaluate the returend Key Phrases
 function evaluateKeyPhrases(data) {
   let keyPhrasesArray = data.documents[0].keyPhrases;
+  // output phrases for web app demo
   objectOutput.innerHTML += '<ul>';
   keyPhrasesArray.forEach(element => objectOutput.innerHTML += '<li>' + element + '</li>');
   objectOutput.innerHTML += '</ul>';
@@ -56,5 +57,16 @@ function evaluateKeyPhrases(data) {
   objectOutput.innerHTML += '<ul>';
   privacyTerms.forEach(element => objectOutput.innerHTML += '<li>' + element + '</li>');
   objectOutput.innerHTML += '</ul>';
+  
+  // check to see if Key Phrases match any of our Privacy Terms
+  keyPhrasesArray.forEach(phrase => {
+    privacyTerms.forEach(term => {
+      if (term.toLowerCase() === phrase.toLowerCase()) {
+        objectOutput.innerHTML += 'We have a match!!';
+      }
+    });
+  });
+
+
   //objectOutput.innerHTML = data.documents[0].keyPhrases;
 }
