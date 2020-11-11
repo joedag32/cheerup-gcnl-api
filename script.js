@@ -1,7 +1,8 @@
 /* declare some variables */
 const functionURL =
   "https://eastus.api.cognitive.microsoft.com/text/analytics/v3.0/keyPhrases";
-const keyPhrases = [];
+// array of privacy terms that we are looking for a match on
+const privacyTerms = ['address', 'cookies', 'credit card', 'ip address', 'personal data', 'third-party'];
 const input = document.getElementById("testValue");
 const analyzeButton = document.getElementById("analyzeButton");
 const objectOutput = document.getElementById("returnedObject");
@@ -48,6 +49,12 @@ function analyzeText(e) {
 // evaluate the returend Key Phrases
 function evaluateKeyPhrases(data) {
   let keyPhrasesArray = data.documents[0].keyPhrases;
-  keyPhrasesArray.forEach(element => objectOutput.innerHTML += element);
+  objectOutput.innerHTML += '<ul>';
+  keyPhrasesArray.forEach(element => objectOutput.innerHTML += '<li>' + element + '</li>');
+  objectOutput.innerHTML += '</ul>';
+  objectOutput.innerHTML += '<h2>Privacy Terms</h2>';
+  objectOutput.innerHTML += '<ul>';
+  privacyTerms.forEach(element => objectOutput.innerHTML += '<li>' + element + '</li>');
+  objectOutput.innerHTML += '</ul>';
   //objectOutput.innerHTML = data.documents[0].keyPhrases;
 }
