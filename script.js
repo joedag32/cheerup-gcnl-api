@@ -47,6 +47,7 @@ function analyzeText(e) {
 
 // evaluate the returend Key Phrases
 function evaluateKeyPhrases(data) {
-  
-  objectOutput.innerHTML = data.documents[0].keyPhrases;
+  let keyPhrasesArray = data.documents[0].keyPhrases;
+  keyPhrasesArray.forEach(element => objectOutput.innerHTML += element);
+  //objectOutput.innerHTML = data.documents[0].keyPhrases;
 }
