@@ -69,10 +69,10 @@ function evaluateKeyPhrases(data) {
   });
   if (privacyTermMatches) {
     objectOutput.innerHTML +=
-      "<h1>Matched Privacy Terms " + privacyTermMatches + " times!!</h1>";
+      "<h1 class='match-response true'>Matched Privacy Terms " + privacyTermMatches + " times!!</h1>";
   } else {
     objectOutput.innerHTML +=
-      "<h1>No Matched Privacy Terms</h1>";
+      "<h1 class='match-response false'>No Matched Privacy Terms</h1>";
   }
 
   // output phrases for web app demo
