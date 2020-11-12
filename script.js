@@ -72,10 +72,10 @@ function evaluateKeyPhrases(data) {
   });
   if (privacyTermMatches) {
     objectOutput.innerHTML +=
-      "<h1 class='match-response true'>Matched Privacy Terms " + privacyTermMatches + " times!!</h1>";
+      "<h1 class='match-response true'>This site collects your data</h1>";
   } else {
     objectOutput.innerHTML +=
-      "<h1 class='match-response false'>No Matched Privacy Terms</h1>";
+      "<h1 class='match-response false'>This site may collect your data</h1>";
   }
 
   // output phrases for web app demo
