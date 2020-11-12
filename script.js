@@ -6,9 +6,12 @@ const privacyTerms = [
   "address",
   "cookies",
   "credit card",
+  "credit card information",
   "ip address",
   "personal data",
-  "third-party"
+  "personal information",
+  "third-party",
+  "use of personal information"
 ];
 const input = document.getElementById("testValue");
 const analyzeButton = document.getElementById("analyzeButton");
@@ -30,7 +33,7 @@ input.addEventListener("input", updateValue);
 function updateValue(e) {
   // trim text to 5000 characters to pass to Azure
   let inputString = e.target.value;
-  inputString.substring(1,5000);
+  inputString.substring(1,4000);
   
   postData.documents[0].text = inputString;
 }
@@ -49,6 +52,7 @@ function analyzeText(e) {
   })
     .then(res => res.json())
     .then(data => {
+      console.log(data);
       evaluateKeyPhrases(data);
     })
     .catch(error => {
@@ -70,7 +74,7 @@ function evaluateKeyPhrases(data) {
       }
     });
   });
-  if (privacyTermMatches) {
+  if (privacyTermMatches > 2) {
     objectOutput.innerHTML +=
       "<h1 class='match-response true'>This site collects your data</h1>";
   } else {
