@@ -1,6 +1,6 @@
 /* declare some variables */
-const functionURL =
-  "https://eastus.api.cognitive.microsoft.com/text/analytics/v3.0/keyPhrases";
+const apiKey = 'AIzaSyDkNZylSVJND4hX0fJFCPAi52JGU8e-Z4o';
+const functionURL = 'https://language.googleapis.com/v1/documents:analyzeSentiment?key=' + apiKey;
 // array of privacy terms that we are looking for a match on
 const privacyTerms = [
   "address",
@@ -21,9 +21,9 @@ let testValue = input.value;
 const postData = {
   documents: [
     {
-      language: "en",
-      id: "1",
-      text: testValue
+      language: "en-us",
+      type: "PLAIN_TEXT",
+      content: testValue
     }
   ]
 };
@@ -33,8 +33,8 @@ input.addEventListener("input", updateValue);
 function updateValue(e) {
   let inputString = e.target.value;
   // trim text to 5000 characters to pass to Azure
-  postData.documents[0].text = inputString.substring(1,5000);
-  console.log('length: ' + postData.documents[0].text.length);
+  postData.documents[0].content = inputString.substring(1,5000);
+  console.log('length: ' + postData.documents[0].content.length);
 }
 
 analyzeButton.addEventListener("click", analyzeText);
@@ -42,16 +42,12 @@ analyzeButton.addEventListener("click", analyzeText);
 function analyzeText(e) {
   fetch(functionURL, {
     method: "POST",
-    headers: {
-      "Ocp-Apim-Subscription-Key": "659f9c405d9f4c4ca9671ea7eec23117",
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify(postData)
+    contentType: "application/json",
+    payload: JSON.stringify(postData)
   })
     .then(res => res.json())
     .then(data => {
-      console.log(postData.documents[0].text);
+      console.log(postData.documents[0].content);
       console.log(data);
       evaluateKeyPhrases(data);
     })
@@ -64,34 +60,5 @@ function analyzeText(e) {
 function evaluateKeyPhrases(data) {
   objectOutput.innerHTML = "";
   let keyPhrasesArray = data.documents[0].keyPhrases;
-
-  // check to see if Key Phrases match any of our Privacy Terms
-  let privacyTermMatches = 0;
-  keyPhrasesArray.forEach(phrase => {
-    privacyTerms.forEach(term => {
-      if (term.toLowerCase() === phrase.toLowerCase()) {
-        privacyTermMatches++;
-      }
-    });
-  });
-  if (privacyTermMatches > 2) {
-    objectOutput.innerHTML +=
-      "<h1 class='match-response true'>This site collects your data</h1>";
-  } else {
-    objectOutput.innerHTML +=
-      "<h1 class='match-response false'>This site may collect your data</h1>";
-  }
-
-  // output phrases for web app demo
-  objectOutput.innerHTML += "<ul>";
-  keyPhrasesArray.forEach(
-    element => (objectOutput.innerHTML += "<li>" + element + "</li>")
-  );
-  objectOutput.innerHTML += "</ul>";
-  objectOutput.innerHTML += "<h2>Privacy Terms</h2>";
-  objectOutput.innerHTML += "<ul>";
-  privacyTerms.forEach(
-    element => (objectOutput.innerHTML += "<li>" + element + "</li>")
-  );
-  objectOutput.innerHTML += "</ul>";
+  console.log(keyPhrasesArray);
 }
