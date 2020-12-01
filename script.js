@@ -9,7 +9,7 @@ const objectOutput = document.getElementById("returnedObject");
 let testValue = input.value;
 /* set value of input field as the body to be sent via the POST request */
 const postData = {
-  language: "en-us",
+  language: "EN",
   type: "PLAIN_TEXT",
   content: testValue
 };
@@ -30,8 +30,8 @@ function updateValue(e) {
 analyzeButton.addEventListener("click", analyzeText);
 /* call Google Cloud Natural Language API */
 function analyzeText(e) {
-  console.log(apiData);
-  /*
+  console.log(JSON.stringify(apiData));
+  
   fetch(functionURL, {
     method: "POST",
     contentType: "application/json",
@@ -44,5 +44,5 @@ function analyzeText(e) {
     .catch(error => {
       console.error(error);
     });
-    */
+    
 }
