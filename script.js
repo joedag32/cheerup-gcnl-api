@@ -22,8 +22,8 @@ const apiData = {
 input.addEventListener("input", updateValue);
 function updateValue(e) {
   let inputString = e.target.value;
-  // trim text to 5000 characters to pass to Azure
-  postData.content = inputString.substring(1, 5000);
+  // trim text to 1000 characters before passing
+  postData.content = inputString.substring(1, 1000);
   console.log("length: " + postData.content.length);
 }
 
@@ -44,5 +44,8 @@ function analyzeText(e) {
     .catch(error => {
       console.error(error);
     });
-  
+}
+
+function outputSentiment(data) {
+  objectOutput.innerHTML = '<p><strong>Sentiment score:</strong> </p>';
 }
