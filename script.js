@@ -11,7 +11,7 @@ let testValue = input.value;
 const postData = {
   type: "PLAIN_TEXT",
   language: "EN",
-  content: "I enjoy pizza"
+  content: testValue
 };
 const apiData = {
   document: postData,
