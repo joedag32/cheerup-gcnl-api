@@ -35,7 +35,7 @@ function analyzeText(e) {
   fetch(functionURL, {
     method: "POST",
     contentType: "application/json",
-    payload: JSON.stringify(apiData)
+    body: JSON.stringify(apiData)
   })
     .then(res => res.json())
     .then(data => {
@@ -45,5 +45,4 @@ function analyzeText(e) {
       console.error(error);
     });
     */
-    
 }
