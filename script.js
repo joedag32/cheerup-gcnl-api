@@ -31,7 +31,7 @@ analyzeButton.addEventListener("click", analyzeText);
 /* call Google Cloud Natural Language API */
 function analyzeText(e) {
   console.log(JSON.stringify(apiData));
-  /*
+  
   fetch(functionURL, {
     method: "POST",
     contentType: "application/json",
@@ -44,5 +44,5 @@ function analyzeText(e) {
     .catch(error => {
       console.error(error);
     });
-    */
+  
 }
