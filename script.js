@@ -40,6 +40,7 @@ function analyzeText(e) {
     .then(res => res.json())
     .then(data => {
       console.log(data);
+      outputSentiment(data);
     })
     .catch(error => {
       console.error(error);
@@ -47,5 +48,11 @@ function analyzeText(e) {
 }
 
 function outputSentiment(data) {
-  objectOutput.innerHTML = '<p><strong>Sentiment score:</strong> </p>';
+  let returnedSentences = data.sentences;
+  objectOutput.innerHTML = '<p>-1 is negative and 1 is positive</p>'
+  objectOutput.innerHTML += '<p><strong>Overall sentiment score:</strong> ' + data.documentSentiment.score + '</p>';
+  objectOutput.innerHTML += '<p><strong>Individual sentences analyzed:</strong></p>';
+  objectOutput.innerHTML += '<ul>';
+  returnedSentences.forEach(element => objectOutput.innerHTML += '<li>' + element.text.content + ' - score: ' + element.sentiment.score + '</li>');
+  objectOutput.innerHTML += '</ul>';
 }
