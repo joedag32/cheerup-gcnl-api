@@ -5,13 +5,14 @@ const functionURL =
 
 // array of positive quotes
 const positiveQuotes = [
-  'Keep on trying!',
-  'You almost got it!',
-  'You’ve just about got it!',
-  'Nice going!',
-  'Smile!',
-  'Remember, every cloud has a silver lining!'
-]
+  "Keep on trying!",
+  "You almost got it!",
+  "You’ve just about got it!",
+  "Nice going!",
+  "Smile!",
+  "Remember, every cloud has a silver lining!",
+  "You are valued!"
+];
 
 const input = document.getElementById("testValue");
 const analyzeButton = document.getElementById("analyzeButton");
@@ -41,7 +42,7 @@ analyzeButton.addEventListener("click", analyzeText);
 /* call Google Cloud Natural Language API */
 function analyzeText(e) {
   console.log(JSON.stringify(apiData));
-  /*
+
   fetch(functionURL, {
     method: "POST",
     contentType: "application/json",
@@ -55,20 +56,37 @@ function analyzeText(e) {
     .catch(error => {
       console.error(error);
     });
-  */
 }
 
 function outputSentiment(data) {
   let returnedSentences = data.sentences;
-  
+
+  let randomQuote =
+    positiveQuotes[Math.floor(Math.random() * positiveQuotes.length)];
+  console.log(randomQuote);
+
+  /*
   if (data.documentSentiment.score < 0) {
     objectOutput.innerHTML += '';
   }
-  
-  objectOutput.innerHTML = '<p>-1 is negative and 1 is positive</p>'
-  objectOutput.innerHTML += '<p><strong>Overall sentiment score:</strong> ' + data.documentSentiment.score + '</p>';
-  objectOutput.innerHTML += '<p><strong>Individual sentences analyzed:</strong></p>';
-  objectOutput.innerHTML += '<ul>';
-  returnedSentences.forEach(element => objectOutput.innerHTML += '<li>' + element.text.content + ' - score: ' + element.sentiment.score + '</li>');
-  objectOutput.innerHTML += '</ul>';
+  */
+
+  objectOutput.innerHTML = "<p>-1 is negative and 1 is positive</p>";
+  objectOutput.innerHTML +=
+    "<p><strong>Overall sentiment score:</strong> " +
+    data.documentSentiment.score +
+    "</p>";
+  objectOutput.innerHTML +=
+    "<p><strong>Individual sentences analyzed:</strong></p>";
+  objectOutput.innerHTML += "<ul>";
+  returnedSentences.forEach(
+    element =>
+      (objectOutput.innerHTML +=
+        "<li>" +
+        element.text.content +
+        " - score: " +
+        element.sentiment.score +
+        "</li>")
+  );
+  objectOutput.innerHTML += "</ul>";
 }
