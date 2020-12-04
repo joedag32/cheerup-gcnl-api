@@ -1,5 +1,5 @@
 /* declare some variables */
-const apiKey = "AIzaSyDkNZylSVJND4hX0fJFCPAi52JGU8e-Z4o";
+const apiKey = process.env.API_KEY;
 const functionURL =
   "https://language.googleapis.com/v1/documents:analyzeSentiment?key=" + apiKey;
 
