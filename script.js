@@ -1,5 +1,5 @@
 /* declare some variables */
-const apiKey = process.env.API_KEY;
+const apiKey = 'AIzaSyDkNZylSVJND4hX0fJFCPAi52JGU8e-Z4o';
 const functionURL =
   "https://language.googleapis.com/v1/documents:analyzeSentiment?key=" + apiKey;
 
@@ -42,7 +42,8 @@ analyzeButton.addEventListener("click", analyzeText);
 /* call Google Cloud Natural Language API */
 function analyzeText(e) {
   console.log(JSON.stringify(apiData));
-
+  outputSentiment();
+/*
   fetch(functionURL, {
     method: "POST",
     contentType: "application/json",
@@ -56,37 +57,15 @@ function analyzeText(e) {
     .catch(error => {
       console.error(error);
     });
+    */
 }
 
 function outputSentiment(data) {
-  let returnedSentences = data.sentences;
-
-  let randomQuote =
-    positiveQuotes[Math.floor(Math.random() * positiveQuotes.length)];
-  console.log(randomQuote);
-
-  /*
+  // if sentiment score is less than 0 then output a random Quote, otherwise just confirm their positivity
   if (data.documentSentiment.score < 0) {
-    objectOutput.innerHTML += '';
+    let randomQuote = positiveQuotes[Math.floor(Math.random() * positiveQuotes.length)];
+    objectOutput.innerHTML += randomQuote;
+  } else {
+    objectOutput.innerHTML += 'That\'s good. Keep on being you!';
   }
-  */
-
-  objectOutput.innerHTML = "<p>-1 is negative and 1 is positive</p>";
-  objectOutput.innerHTML +=
-    "<p><strong>Overall sentiment score:</strong> " +
-    data.documentSentiment.score +
-    "</p>";
-  objectOutput.innerHTML +=
-    "<p><strong>Individual sentences analyzed:</strong></p>";
-  objectOutput.innerHTML += "<ul>";
-  returnedSentences.forEach(
-    element =>
-      (objectOutput.innerHTML +=
-        "<li>" +
-        element.text.content +
-        " - score: " +
-        element.sentiment.score +
-        "</li>")
-  );
-  objectOutput.innerHTML += "</ul>";
 }
