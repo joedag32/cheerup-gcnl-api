@@ -6,12 +6,12 @@ const functionURL =
 // array of positive quotes
 const positiveQuotes = [
   "Keep on trying!",
-  "You almost got it!",
-  "You’ve just about got it!",
-  "I!",
+  "You are and amazing person!",
+  "It's going to get better!",
   "Smile!",
   "Remember, every cloud has a silver lining!",
-  "You are valued!"
+  "You are valued!",
+  "Don't worry, be happy!"
 ];
 
 const input = document.getElementById("testValue");
