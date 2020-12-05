@@ -64,8 +64,8 @@ function outputSentiment(data) {
   // if sentiment score is less than 0 then output a random Quote, otherwise just confirm their positivity
   if (data.documentSentiment.score < 0) {
     let randomQuote = positiveQuotes[Math.floor(Math.random() * positiveQuotes.length)];
-    objectOutput.innerHTML += randomQuote;
+    objectOutput.innerHTML += '<p>' + randomQuote + '</p>';
   } else {
-    objectOutput.innerHTML += 'That\'s good. Keep on being you!';
+    objectOutput.innerHTML += '<p>That\'s good. Keep on being you!</p>';
   }
 }
