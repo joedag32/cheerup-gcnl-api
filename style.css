@@ -12,7 +12,7 @@ h1 {
 label, textarea, button {
   display: block;
 }
-#returnedObject {
+#returnedObject p {
   padding: 1em;
   font-size: 24px;
   color: #fff;
