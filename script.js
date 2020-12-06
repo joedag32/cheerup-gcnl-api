@@ -1,5 +1,5 @@
 /* declare some variables */
-const apiKey = 'AIzaSyDkNZylSVJND4hX0fJFCPAi52JGU8e-Z4o';
+const apiKey = "AIzaSyDkNZylSVJND4hX0fJFCPAi52JGU8e-Z4o";
 const functionURL =
   "https://language.googleapis.com/v1/documents:analyzeSentiment?key=" + apiKey;
 
@@ -14,9 +14,11 @@ const positiveQuotes = [
   "Don't worry, be happy!"
 ];
 
+const questionWrapper = document.getElementById("question-area");
 const input = document.getElementById("testValue");
 const analyzeButton = document.getElementById("analyzeButton");
 const objectOutput = document.getElementById("returnedObject");
+const resetBtn = document.getElementById("reset");
 let testValue = input.value;
 /* set value of input field as the body to be sent via the POST request */
 const postData = {
@@ -40,7 +42,8 @@ function updateValue(e) {
 analyzeButton.addEventListener("click", analyzeText);
 /* call Google Cloud Natural Language API */
 function analyzeText(e) {
-  fetch(functionURL, {
+  if (postData.content != "") {
+    fetch(functionURL, {
     method: "POST",
     contentType: "application/json",
     body: JSON.stringify(apiData)
@@ -52,15 +55,29 @@ function analyzeText(e) {
     .catch(error => {
       console.error(error);
     });
+  }
 }
 
 function outputSentiment(data) {
-  objectOutput.innerHTML = '';
+  // hide question-wrapper
+  questionWrapper.classList.add("hide");
+  resetBtn.classList.remove("hide");
+
+  objectOutput.innerHTML = "";
   // if sentiment score is less than 0 then output a random Quote, otherwise just confirm their positivity
   if (data.documentSentiment.score < 0) {
-    let randomQuote = positiveQuotes[Math.floor(Math.random() * positiveQuotes.length)];
-    objectOutput.innerHTML += '<p>' + randomQuote + '</p>';
+    let randomQuote =
+      positiveQuotes[Math.floor(Math.random() * positiveQuotes.length)];
+    objectOutput.innerHTML += "<p>" + randomQuote + "</p>";
   } else {
-    objectOutput.innerHTML += '<p>That\'s good. Keep on being you!</p>';
+    objectOutput.innerHTML += "<p>That's good. Keep on being you!</p>";
   }
 }
+
+resetBtn.addEventListener("click", reset);
+function reset() {
+  resetBtn.classList.add("hide");
+  objectOutput.innerHTML = "";
+  questionWrapper.classList.remove("hide");
+}
+

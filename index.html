@@ -4,15 +4,33 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Google Cloud Natural Language REST API</title>
+    <title>Tell Me Something Good</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Google Cloud Natural Language REST API</h1>
-    <label for="testValue">How are you feeling?</label>
-    <textarea id="testValue" name="testValue" rows="4" cols="50"></textarea>
-    <button type="button" id="analyzeButton">Analyze Text!</button>
-    <div id="returnedObject"></div>
+    <div class="container">
+      <h1>Tell Me Something Good</h1>
+      <p>
+        An application that recognizes sentiment and responds with an
+        affirmation or words of encouragement.
+      </p>
+      <div id="question-area">
+        <label for="testValue">How are you feeling?</label>
+        <textarea id="testValue" name="testValue"></textarea>
+        <button type="button" id="analyzeButton">
+          Tell Me Something Good!
+        </button>
+      </div>
+      <div id="returnedObject"></div>
+      <button type="button" id="reset" class="hide">Try Again</button>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
+
