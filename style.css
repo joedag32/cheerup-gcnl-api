@@ -3,11 +3,12 @@
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 2em;
+  background-color: turquoise;
 }
 .container {
   max-width: 800px;
-  magin: 20px auto;
-  padding: 1em;
+  margin: 20px auto;
+  padding: 1.5em;
   background: #f7f7f7;
   border: 1px solid #ccc;
   border-radius: 0.4em;
@@ -19,7 +20,11 @@ body {
 }
 h1 {
   margin: 0;
-  color: #4e9af1;
+  text-align: center;
+  color: #34568b;
+}
+p {
+  text-align: center;
 }
 label,
 textarea,
@@ -31,12 +36,13 @@ label {
   padding-top: 20px;
   font-size: 18px;
   font-weight: 600;
+  text-align: center;
   border-top: 1px solid #ccc;
 }
 textarea {
   width: 100%;
   height: 5em;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 #analyzeButton {
   width: 100%;
@@ -44,7 +50,7 @@ textarea {
   padding: 0.46em 1.6em;
   border: 0.1em solid #116cd4;
   margin: 0 0.2em 0.2em 0;
-  background-color: #4e9af1;
+  background-color: #34568b;
   border-radius: 0.12em;
   font-size: 18px;
   font-weight: 600;
